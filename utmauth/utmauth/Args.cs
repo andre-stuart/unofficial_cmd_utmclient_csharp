@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Security;
 
@@ -12,36 +13,50 @@ namespace utmauth
         public Args(string[] args)
         {
             _args = args;
-            try { this.Parse(); Status = true; } catch { Status = false; };
+            try 
+            { 
+                this.Parse(); 
+                Status = true; 
+            } 
+            catch (Exception e) 
+            { 
+                //Console.WriteLine(e); 
+                Status = false; 
+            };
         }
 
         public void Parse()
         {
             for (int i = 0; i < _args.Length; i++)
             {
+                int iv = i + 1;
+
                 if (_args[i] == "--action")
-                    Action = _args[i++].Contains("--") ? "" : _args[i++].Trim().ToLower();
+                    Action = _args[iv].Contains("--") ? "" : _args[iv].Trim().ToLower();
 
                 else if (_args[i] == "--server")
-                    Server = _args[i++].Contains("--") ? "" : _args[i++].Trim().ToLower();
+                    Server = _args[iv].Contains("--") ? "" : _args[iv].Trim().ToLower();
 
                 else if (_args[i] == "--port")
-                    Port = _args[i++].Contains("--") ? "" : _args[i++].Trim();
+                    Port = _args[iv].Contains("--") ? "" : _args[iv].Trim();
 
                 else if (_args[i] == "--login")
-                    Login = _args[i++].Contains("--") ? "" : _args[i++].Trim().ToLower();
+                    Login = _args[iv].Contains("--") ? "" : _args[iv].Trim().ToLower();
 
                 else if (_args[i] == "--pass")
-                    Pass = _args[i++].Contains("--") ? new NetworkCredential("", "").SecurePassword : new NetworkCredential("", _args[i++].Trim()).SecurePassword;
+                    Pass = _args[iv].Contains("--") ? new NetworkCredential("", "").SecurePassword : new NetworkCredential("", _args[iv].Trim()).SecurePassword;
 
                 else if (_args[i] == "--logfile")
-                    LogFile = _args[i++].Contains("--") ? "" : _args[i++].Trim();
+                    LogFile = _args[iv].Contains("--") ? "" : _args[iv].Trim();
 
                 else if (_args[i] == "--cookie")
-                    CookieFile = _args[i++].Contains("--") ? "" : _args[i++].Trim();
+                    CookieFile = _args[iv].Contains("--") ? "" : _args[iv].Trim();
 
                 else if (_args[i] == "--keepalive")
-                    KeepaliveTime = _args[i++].Contains("--") ? "" : _args[i++].Trim();
+                    KeepaliveTime = _args[iv].Contains("--") ? "" : _args[iv].Trim();
+
+                else if (_args[i].Contains("--"))
+                    throw new System.ArgumentException("Parameter invalid", "");
             }
 
             if (Server.Length < 1 || Login.Length < 1 || Pass.Length < 1)
@@ -49,30 +64,30 @@ namespace utmauth
 
             Validate v = new Validate();
 
-            if (Action.Length < 1)
+            if (Action == null || Action.Length < 1)
                 Action = "login";
             else if (!v.IsAction(Action))
-                throw new System.ArgumentException("Parameter invalid", "action");
+                throw new System.ArgumentException("Parameter action invalid", "action");
 
-            if (Port.Length < 1)
+            if (Port == null || Port.Length < 1)
                 Port = "9803";
             else if (!v.IsPort(Port))
-                throw new System.ArgumentException("Parameter invalid", "port");
+                throw new System.ArgumentException("Parameter port invalid", "port");
 
-            if (LogFile.Length < 1)
+            if (LogFile == null || LogFile.Length < 1)
                 LogFile = "utmauth.log";
             else if (!v.IsLogFile(LogFile))
-                throw new System.ArgumentException("Parameter invalid", "logfile");
+                throw new System.ArgumentException("Parameter logfile invalid", "logfile");
 
-            if (CookieFile.Length < 1)
+            if (CookieFile == null || CookieFile.Length < 1)
                 CookieFile = "utmauth.cookie";
             else if (!v.IsCookieFile(LogFile))
-                throw new System.ArgumentException("Parameter invalid", "cookie");
+                throw new System.ArgumentException("Parameter cookie invalid", "cookie");
 
-            if (KeepaliveTime.Length < 1)
+            if (KeepaliveTime == null || KeepaliveTime.Length < 1)
                 KeepaliveTime = "0";
             else if (!v.IsKeepaliveTime(LogFile))
-                throw new System.ArgumentException("Parameter invalid", "keepalive");
+                throw new System.ArgumentException("Parameter keepalive invalid", "keepalive");
         }
 
         public bool Status { get; }

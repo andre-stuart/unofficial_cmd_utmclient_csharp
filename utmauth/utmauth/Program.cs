@@ -25,17 +25,19 @@ namespace utmauth
             var opt = new Args(args);
             if (!opt.Status)
             {
+                Console.WriteLine("Invalid arguments");
                 Help();
                 Environment.Exit(Status.ERR_PARAM);
             }
 
-            //Console.WriteLine("OKOK");
+            Console.WriteLine("OKOK");
             Environment.Exit(Status.SUCCESS);
         }
 
         static void Help()
         {
-            Console.WriteLine("unofficial client for authentication without interface in Blockbit® utm client");
+            Console.WriteLine("");
+            Console.WriteLine("Unofficial command line client for authentication in Blockbit® UTM");
             Console.WriteLine("");
             Console.WriteLine("Using:");
             Console.WriteLine("  utmauth.exe --action[ACTION] --server[ip/host] --login[login/email] --pass[password]");
