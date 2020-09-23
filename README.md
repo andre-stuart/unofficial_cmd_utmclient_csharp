@@ -1,4 +1,4 @@
-# unofficial_utm_cmd_client
+# unofficial_cmd_utmclient_csharp
 
 Unofficial CMD Client for Blockbit® UTM [c# .NET core 3.1]
 
