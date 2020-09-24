@@ -58,42 +58,45 @@ namespace utmauth
                     Agent = _args[iv].Contains("--") ? "" : _args[iv].Trim();
 
                 else if (_args[i].Contains("--"))
-                    throw new System.ArgumentException("Parameter invalid", "");
+                    throw new System.ArgumentException("Invalid parameter", "");
             }
 
             //if (Server.Length < 1 || Login.Length < 1 || Pass.Length < 1)
             if (Server.Length < 1 || Login.Length < 1)
-                throw new System.ArgumentException("Parameter login or server invalid", "");
+                throw new System.ArgumentException("Login or server parameter invalid", "");
 
             var v = new Validate();
+
+            if (!v.IsServer(Server))
+                throw new System.ArgumentException("Server prameter invalid", "action");
 
             if (Action == null || Action.Length < 1)
                 Action = "login";
             else if (!v.IsAction(Action))
-                throw new System.ArgumentException("Parameter action invalid", "action");
+                throw new System.ArgumentException("Action prameter invalid", "action");
 
             if(Action == "login" && (Pass == null || Pass.Length < 1))
-                throw new System.ArgumentException("Parameter pass invalid", "");
+                throw new System.ArgumentException("Pass parameter invalid", "");
 
             if (Port == null || Port.Length < 1)
                 Port = "9803";
             else if (!v.IsPort(Port))
-                throw new System.ArgumentException("Parameter port invalid", "port");
+                throw new System.ArgumentException("Port parameter invalid", "port");
 
             if (Agent == null || Agent.Length < 1)
                 Agent = "CMDClient";
             else if (!v.IsName(Agent))
-                throw new System.ArgumentException("Parameter agent invalid", "port");
+                throw new System.ArgumentException("Agent parameter invalid", "port");
 
             if (CookieFile == null || CookieFile.Length < 1)
                 CookieFile = "utmauth.cookie";
             else if (!v.IsCookieFile(LogFile))
-                throw new System.ArgumentException("Parameter cookie invalid", "cookie");
+                throw new System.ArgumentException("Cookie parameter invalid", "cookie");
 
             if (KeepaliveTime == null || KeepaliveTime.Length < 1)
                 KeepaliveTime = "0";
             else if (!v.IsKeepaliveTime(LogFile))
-                throw new System.ArgumentException("Parameter keepalive invalid", "keepalive");
+                throw new System.ArgumentException("Keepalive parameter invalid", "keepalive");
         }
 
         public bool Status { get; }

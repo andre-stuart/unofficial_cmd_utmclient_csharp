@@ -69,7 +69,7 @@ namespace utmauth
         {
             Console.WriteLine("");
             Console.WriteLine("Unofficial command line client for authentication in Blockbit® UTM");
-            Console.WriteLine("Version 0.1a");
+            Console.WriteLine("Version 0.1");
             Console.WriteLine("Using:");
             Console.WriteLine("  utmauth.exe --action[ACTION] --server[ip/host] --login[login/email] --pass[password]");
             Console.WriteLine("");

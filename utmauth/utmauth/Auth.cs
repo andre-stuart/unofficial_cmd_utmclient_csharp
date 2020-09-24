@@ -39,6 +39,9 @@ namespace utmauth
             var result = await client.PostAsync(url, content);
             if(result.StatusCode != System.Net.HttpStatusCode.OK)
             {
+                if (File.Exists(opt.CookieFile))
+                    File.Delete(opt.CookieFile);
+
                 Console.WriteLine(result.StatusCode);
                 Console.WriteLine(result.ReasonPhrase);
             }
