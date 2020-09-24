@@ -76,9 +76,9 @@ namespace utmauth
             Console.WriteLine("Options:");
             Console.WriteLine("  --help                -> Show this help message.");
             Console.WriteLine("  --action[ACTION]      -> [Optional] login, logout, keepalive or status [default: login]. ex: login");
-            Console.WriteLine("  --server[ip/host]     -> [Required] UTM server ip or host. ex: utm.exmaple.com");
+            Console.WriteLine("  --server[ip/host]     -> [Required] UTM server ip or host. ex: utm.example.com");
             Console.WriteLine("  --port[port]          -> [Optional] UTM server port [default: 9803]. ex: 9803");
-            Console.WriteLine("  --login[login/email]  -> [Required] UTM login or login@domain. ex: user@exmaple.com");
+            Console.WriteLine("  --login[login/email]  -> [Required] UTM login or login@domain. ex: user@domain.com");
             Console.WriteLine("  --pass[password]      -> [Required] UTM user password.");
             //Console.WriteLine("  --ca[uri]             -> [Coming soon] X509 CA file using tls handshake.");
             //Console.WriteLine("  --cert[uri]           -> [Coming soon] User X509 certificate for 2FA.");
@@ -88,9 +88,9 @@ namespace utmauth
             //Console.WriteLine("    *if none keepalive, empty or equal to 0(zero) keepalive disabled");
             Console.WriteLine("");
             Console.WriteLine("Example:");
-            Console.WriteLine("  > utmauth.exe --action login --server utm.exmaple.com --login user@exmaple.com --pass \"*******\"");
-            Console.WriteLine("  > utmauth.exe --action logout --server utm.exmaple.com --login user@exmaple.com");
-            Console.WriteLine("  > utmauth.exe --action keepalive --server utm.exmaple.com --login user@exmaple.com");
+            Console.WriteLine("  > utmauth.exe --action login --server utm.example.com --login user@domain.com --pass \"*******\"");
+            Console.WriteLine("  > utmauth.exe --action logout --server utm.example.com --login user@domain.com");
+            Console.WriteLine("  > utmauth.exe --action keepalive --server utm.example.com --login user@v.com");
             Console.WriteLine("");
             Console.WriteLine("Developer by Andre StuartDev [nbbr.andre@gmail.com]");
             Console.WriteLine("");
