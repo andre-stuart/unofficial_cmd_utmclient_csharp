@@ -22,6 +22,7 @@ namespace utmauth
             rIPv4 = new Regex(@"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$");
         }
 
+        public bool IsName(string val) => val.Length > 0 && rName.IsMatch(val);
         public bool IsAction(string val) => val.Length > 0 && (val == "login" || val == "logout" || val == "keepalive");
         public bool IsServer(string val) => val.Length > 0 && (rIPv4.IsMatch(val) || !rDmn.IsMatch(val));
         public bool IsPort(string val) => val.Length > 0 && rPort.IsMatch(val);
