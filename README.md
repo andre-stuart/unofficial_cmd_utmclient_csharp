@@ -1,3 +1,9 @@
+[![GitHub license](https://img.shields.io/github/license/andre-stuart/unofficial_cmd_utmclient_perl)](https://github.com/andre-stuart/unofficial_cmd_utmclient_perl/blob/master/LICENSE) &nbsp;
+[![Windows Version](https://img.shields.io/badge/Windows-10-blue)](https://www.microsoft.com/) &nbsp;
+[![Visual Studio Version](https://img.shields.io/badge/Visual%20Studio-2019-blue)](https://visualstudio.microsoft.com/) &nbsp;
+[![.NET Core Version](https://img.shields.io/badge/.Net%20Core-3.1-blue)](https://visualstudio.microsoft.com/)
+
+
 # unofficial_cmd_utmclient_csharp
 
 Unofficial command line client for authentication in Blockbit® UTM [c# .NET core 3.1]
